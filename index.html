@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+/* Theme: same logic and storage key as the reports, so the choice carries across pages. */
+(function(){var k='goal-theme',r=document.documentElement,m=window.matchMedia('(prefers-color-scheme: dark)');
+function saved(){try{var s=localStorage.getItem(k);return s==='light'||s==='dark'?s:null;}catch(e){return null;}}
+function sys(){return m.matches?'dark':'light';}
+r.setAttribute('data-theme',saved()||sys());
+var onSys=function(){if(!saved())r.setAttribute('data-theme',sys());};
+if(m.addEventListener)m.addEventListener('change',onSys);else if(m.addListener)m.addListener(onSys);
+window.goalToggleTheme=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{if(n===sys())localStorage.removeItem(k);else localStorage.setItem(k,n);}catch(e){}};})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Hodge Insurance · Performance Reports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#f6f8fc; --surface:#ffffff; --surface-raised:#ebf0f9;
+  --border-subtle:#dbe2ec; --border-strong:#94a3b8;
+  --ink:#001020; --ink-soft:#334155; --ink-muted:#475569;
+  --brand:#057be5; --brand-text:#0569c4;
+  --brand-tint:rgba(5,123,229,.08); --brand-border:rgba(5,123,229,.3);
+  --amber:#b45309;
+  --shadow-card:0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-hover:0 12px 32px -12px rgba(15,23,42,.18);
+  --logo-light:block; --logo-dark:none;
+}
+:root[data-theme="dark"]{
+  --ground:#080c10; --surface:#0d1117; --surface-raised:#151a1e;
+  --border-subtle:rgba(30,41,59,.9); --border-strong:#64748b;
+  --ink:#ffffff; --ink-soft:#cbd5e1; --ink-muted:#94a3b8;
+  --brand-text:#339fff;
+  --brand-tint:rgba(5,123,229,.10); --brand-border:rgba(51,159,255,.35);
+  --amber:#d97706;
+  --shadow-card:0 25px 50px -12px rgba(0,0,0,.25);
+  --shadow-hover:0 0 28px -8px rgba(5,123,229,.55);
+  --logo-light:none; --logo-dark:block;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--ground);color:var(--ink-soft);line-height:1.5;min-height:100vh;}
+h1,h2,.num{font-family:'Sora',system-ui,sans-serif;}
+.wrap{max-width:1120px;margin:0 auto;padding:56px 24px 64px;}
+header .logo{height:28px;width:auto;margin-bottom:48px;}
+header .logo.on-light{display:var(--logo-light);} header .logo.on-dark{display:var(--logo-dark);}
+.eb{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);}
+.rule{width:48px;height:3px;border-radius:9999px;background:linear-gradient(90deg,var(--brand),var(--amber));margin:12px 0 16px;}
+h1{font-size:clamp(32px,5vw,48px);font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.1;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:16px;color:var(--ink-muted);font-size:15px;}
+.meta b{color:var(--ink-soft);font-weight:600;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-subtle);border-radius:16px;padding:24px;
+  text-decoration:none;color:inherit;box-shadow:var(--shadow-card);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;}
+.card:hover{transform:translateY(-2px);border-color:var(--brand-border);box-shadow:var(--shadow-hover);}
+.card:focus-visible{outline:2px solid var(--brand-text);outline-offset:3px;}
+.card.feature{grid-column:1 / -1;background:linear-gradient(135deg,var(--brand-tint),transparent 60%),var(--surface);}
+.tag{align-self:flex-start;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-text);
+  background:var(--brand-tint);border:1px solid var(--brand-border);border-radius:9999px;padding:3px 10px;}
+.card h2{font-size:22px;font-weight:700;color:var(--ink);margin:14px 0 4px;}
+.card.feature h2{font-size:28px;}
+.card .sub{font-size:15px;color:var(--ink-muted);}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 12px;margin:24px 0;padding-top:20px;border-top:1px solid var(--border-subtle);}
+.card.feature .stats{grid-template-columns:repeat(4,1fr);}
+.stat .num{display:block;font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.card.feature .stat .num{font-size:30px;}
+.stat .lbl{font-size:13px;color:var(--ink-muted);}
+.open{margin-top:auto;font-weight:600;font-size:15px;color:var(--brand-text);}
+.open span{display:inline-block;transition:transform .15s ease;}
+.card:hover .open span{transform:translateX(4px);}
+footer{margin-top:48px;font-size:13px;color:var(--ink-muted);}
+.theme-toggle{position:fixed;top:16px;right:16px;z-index:1000;width:40px;height:40px;border-radius:9999px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:#ffffff;color:#334155;border:1px solid #dbe2ec;box-shadow:0 2px 10px rgba(15,23,42,.08);}
+.theme-toggle:hover{color:#057be5;border-color:#94a3b8;}
+.theme-toggle:focus-visible{outline:2px solid #057be5;outline-offset:2px;}
+.theme-toggle svg{width:18px;height:18px;}
+.theme-toggle .i-sun{display:none;}
+:root[data-theme="dark"] .theme-toggle{background:#151a1e;color:#e2e8f0;border-color:#334155;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+:root[data-theme="dark"] .theme-toggle:hover{color:#339fff;border-color:#64748b;}
+:root[data-theme="dark"] .theme-toggle .i-sun{display:block;} :root[data-theme="dark"] .theme-toggle .i-moon{display:none;}
+@media (max-width:900px){ .grid{grid-template-columns:1fr 1fr;} .card.feature .stats{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:620px){ .wrap{padding:40px 16px 48px;} .grid{grid-template-columns:1fr;} }
+@media (prefers-reduced-motion:reduce){ .card,.open span{transition:none;} .card:hover{transform:none;} }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <img class="logo on-light" src="/assets/goal-logo-light.png" alt="GOAL">
+    <img class="logo on-dark" src="/assets/goal-logo-dark.png" alt="GOAL">
+    <div class="eb">Performance Review</div>
+    <div class="rule"></div>
+    <h1>Hodge Insurance</h1>
+    <div class="meta">
+      <span>Prepared for <b>Aaron Hodge</b></span>
+      <span>Illinois</span>
+      <span>Updated <b>Nov 14, 2026</b></span>
+    </div>
+  </header>
+
+  <section class="grid" aria-label="Reports">
+    <a class="card feature" href="/reports/marketplace">
+      <span class="tag">Home Marketplace</span>
+      <h2>Marketplace Performance</h2>
+      <span class="sub">Home · Illinois · Last 3 months to Nov 14, 2026</span>
+      <div class="stats">
+        <div class="stat"><span class="num">465</span><span class="lbl">Leads</span></div>
+        <div class="stat"><span class="num">22%</span><span class="lbl">Contact rate</span></div>
+        <div class="stat"><span class="num">5</span><span class="lbl">Policies bound</span></div>
+        <div class="stat"><span class="num">$706</span><span class="lbl">CPA</span></div>
+      </div>
+      <span class="open">Open report <span>&rarr;</span></span>
+    </a>
+
+    <a class="card" href="/reports/deep-dive">
+      <span class="tag">Deep Dive</span>
+      <h2>Performance Breakdown</h2>
+      <span class="sub">Property type, property age, county, and source · Last 3 months</span>
+      <div class="stats">
+        <div class="stat"><span class="num">92%</span><span class="lbl">Leads from single family homes</span></div>
+        <div class="stat"><span class="num">4 of 5</span><span class="lbl">Policies from St. Clair &amp; Madison</span></div>
+      </div>
+      <span class="open">Open report <span>&rarr;</span></span>
+    </a>
+
+    <a class="card" href="/reports/inbound-calls">
+      <span class="tag">Inbound Calls</span>
+      <h2>Inbound Call Report</h2>
+      <span class="sub">Answer rate scenarios · Last 180 days to Nov 14, 2026</span>
+      <div class="stats">
+        <div class="stat"><span class="num">35</span><span class="lbl">Inbound calls</span></div>
+        <div class="stat"><span class="num">51%</span><span class="lbl">Answer rate</span></div>
+        <div class="stat"><span class="num">14</span><span class="lbl">Quotes</span></div>
+        <div class="stat"><span class="num">4</span><span class="lbl">Policies bound</span></div>
+      </div>
+      <span class="open">Open report <span>&rarr;</span></span>
+    </a>
+  </section>
+
+  <footer>GOAL Performance Marketing · All conversion metrics calculated based on Leads, not Clicks.</footer>
+</main>
+
+<button class="theme-toggle" type="button" onclick="goalToggleTheme()" aria-label="Switch between light and dark mode" title="Switch light/dark mode">
+  <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+</button>
+</body>
+</html>
