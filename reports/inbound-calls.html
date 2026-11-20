@@ -157,6 +157,13 @@ body{margin:0;}
 /* ---------- Funnel ---------- */
 .fpanel{border:1px solid var(--border-subtle);border-radius:12px;padding:28px;background:var(--surface);box-shadow:var(--shadow-card);}
 .fhead{display:flex;justify-content:flex-end;font-size:12px;color:var(--ink-muted);margin-bottom:8px;padding-right:2px;}
+.fsum{margin:-4px 0 24px;padding-bottom:20px;border-bottom:1px solid var(--border-subtle);}
+.fsum-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.fsum-k{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);}
+.fsum-delta{font-size:13px;font-weight:600;color:var(--success);background:color-mix(in srgb,var(--success) 12%,transparent);border:1px solid color-mix(in srgb,var(--success) 35%,transparent);border-radius:9999px;padding:3px 12px;}
+.fsum-t{font-family:'Sora',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);letter-spacing:-.01em;line-height:1.2;margin:6px 0 8px;}
+.fsum-d{font-size:16px;color:var(--ink-soft);line-height:1.6;max-width:72ch;}
+.fsum-d b{color:var(--ink);font-weight:600;}
 .fstep{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
 .fstep .lab{width:132px;flex-shrink:0;text-align:right;font-size:14px;font-weight:600;color:var(--ink);}
 .fstep .lab small{display:block;font-weight:400;color:var(--ink-muted);font-size:12px;}
@@ -289,31 +296,28 @@ body{margin:0;}
     <section class="block" id="s2">
       <div class="bhead"><span class="ix">02</span><div><h2>Current Results</h2><p>Last 180 days to Nov 14, 2026 · actual answer rate 51%</p></div></div>
       <div class="fpanel">
-        <div class="fhead">Actual</div>
+        <div class="fsum"><div class="fsum-top"><span class="fsum-k">Actual</span></div><h3 class="fsum-t">51% answer rate</h3><p class="fsum-d"><b>18</b> of 35 calls answered, 17 missed. <b>14 quotes</b> (78% of answered calls) and <b>4 policies</b> (22% of answered calls).</p></div>
         <div class="fstep"><div class="lab">Inbound calls<small>received</small></div><div class="fbar"><i class="pre" data-w="100">35</i></div><div class="pct"><b>100%</b></div></div>
         <div class="fstep"><div class="lab">Answered<small>live</small></div><div class="fbar"><i class="cv" data-w="51">18</i></div><div class="pct"><b>51%</b><span>of calls</span></div></div>
         <div class="fstep"><div class="lab">Quotes<small>presented</small></div><div class="fbar"><i class="cv" data-w="40">14</i></div><div class="pct"><b>78%</b><span>of answered</span></div></div>
         <div class="fstep"><div class="lab">Policies<small>bound</small></div><div class="fbar"><i class="cv end" data-w="11">4</i></div><div class="pct"><b>22%</b><span>of answered</span></div></div>
-        <div class="fnote">Answer rate <b>51%</b> (18 of 35 calls). Missed <b>17</b>. Quotes <b>14</b> (78% of answered calls). Policies <b>4</b> (22% of answered calls).</div>
       </div>
     </section>
     <section class="block" id="s3">
       <div class="bhead"><span class="ix">03</span><div><h2>Answer Rate Scenarios</h2><p>Same 35 calls · quote and bind rates per answered call held at actual</p></div></div>
       <div class="fpanel" style="margin-top:16px;">
-        <div class="fhead">Scenario · 75% answer rate</div>
+        <div class="fsum"><div class="fsum-top"><span class="fsum-k">Scenario</span><span class="fsum-delta">+2 policies vs. actual</span></div><h3 class="fsum-t">75% answer rate</h3><p class="fsum-d"><b>26</b> of 35 calls answered, 9 missed. At the actual 78% quote and 22% bind rates per answered call: <b>20 quotes</b> and <b>6 policies</b>.</p></div>
         <div class="fstep"><div class="lab">Inbound calls<small>received</small></div><div class="fbar"><i class="pre" data-w="100">35</i></div><div class="pct"><b>100%</b></div></div>
         <div class="fstep"><div class="lab">Answered<small>live</small></div><div class="fbar"><i class="cv" data-w="74">26</i></div><div class="pct"><b>75%</b><span>of calls</span></div></div>
         <div class="fstep"><div class="lab">Quotes<small>presented</small></div><div class="fbar"><i class="cv" data-w="57">20</i></div><div class="pct"><b>78%</b><span>of answered</span></div></div>
         <div class="fstep"><div class="lab">Policies<small>bound</small></div><div class="fbar"><i class="cv end" data-w="17">6</i></div><div class="pct"><b>22%</b><span>of answered</span></div></div>
-        <div class="fnote">Answer rate <b>75%</b>: <b>26</b> of 35 calls answered, 9 missed. At the actual 78% quote and 22% bind rates per answered call: <b>20 quotes</b> and <b>6 policies</b> (+2 vs. actual).</div>
       </div>
       <div class="fpanel" style="margin-top:16px;">
-        <div class="fhead">Scenario · 90% answer rate</div>
+        <div class="fsum"><div class="fsum-top"><span class="fsum-k">Scenario</span><span class="fsum-delta">+3 policies vs. actual</span></div><h3 class="fsum-t">90% answer rate</h3><p class="fsum-d"><b>32</b> of 35 calls answered, 3 missed. At the actual 78% quote and 22% bind rates per answered call: <b>25 quotes</b> and <b>7 policies</b>.</p></div>
         <div class="fstep"><div class="lab">Inbound calls<small>received</small></div><div class="fbar"><i class="pre" data-w="100">35</i></div><div class="pct"><b>100%</b></div></div>
         <div class="fstep"><div class="lab">Answered<small>live</small></div><div class="fbar"><i class="cv" data-w="91">32</i></div><div class="pct"><b>90%</b><span>of calls</span></div></div>
         <div class="fstep"><div class="lab">Quotes<small>presented</small></div><div class="fbar"><i class="cv" data-w="71">25</i></div><div class="pct"><b>78%</b><span>of answered</span></div></div>
         <div class="fstep"><div class="lab">Policies<small>bound</small></div><div class="fbar"><i class="cv end" data-w="20">7</i></div><div class="pct"><b>22%</b><span>of answered</span></div></div>
-        <div class="fnote">Answer rate <b>90%</b>: <b>32</b> of 35 calls answered, 3 missed. At the actual 78% quote and 22% bind rates per answered call: <b>25 quotes</b> and <b>7 policies</b> (+3 vs. actual).</div>
       </div>
       <div class="panel tscroll" style="margin-top:16px;">
         <table class="ltable">
