@@ -4,7 +4,7 @@ Static site for the Hodge Insurance GOAL campaign reports. No build step.
 
 ```
 index.html            Landing page with a card for each report
-reports/marketplace.html    Home marketplace, last 3 months
+reports/marketplace.html    Home marketplace, Sep 4 to Oct 31, 2026
 reports/deep-dive.html      Property type, property age, county, source
 reports/inbound-calls.html  Inbound calls, last 180 days, with 75% / 90% answer rate scenarios
 reports/quote-bind.html     Home marketplace quote and bind analysis, Sep 4 to Oct 31, 2026
